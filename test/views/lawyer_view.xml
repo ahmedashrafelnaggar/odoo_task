@@ -1,0 +1,109 @@
+<odoo>
+    <record model="ir.ui.view"  id="lawyer_view_tree">
+        <field name="name">lawyer_tree</field>
+        <field name="model">lawyer</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+
+            <!-- view co/ntent: <form>, <tree>, <graph>, ... -->
+            <tree  class="header_custom"  multi_edit="1" create="1" edit="1" delete="1">
+
+                <field name="name"/>
+                <field name="ref"/>
+                <field name="phone"/>
+                <field name="activity_ids" widget="list_activity"/>
+                <field name="address"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record    model="ir.ui.view"  id="lawyer_view_form">
+        <field name="name">lawyer form </field>
+        <field name="model">lawyer</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <!-- view content: <form>, <tree>, <graph>, ... -->
+            <form create="1" edit="1" delete="1">
+                <sheet>
+                     <div class="oe_title">
+
+                         <h2>
+                             <label for="ref" class="form-label">ref:</label>
+                             <field name="ref"/>
+                         </h2>
+                     </div>
+                    <group>
+
+                        <group string="General info">
+
+                            <field name="customer_id"/>
+                            <field name="phone"/>
+                            <field name="address"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+
+                        <group string="Additional info">
+
+                             <field name="start_date"/>
+                             <field name="end_date"/>
+                             <field name="duration"/>
+
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view"  id="lawyer_view_search">
+        <field name="name">lawyer search</field>
+        <field name="model">lawyer</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+
+            <!-- view content: <form>, <tree>, <graph>, ... -->
+            <search>
+                <field name="customer_id"/>
+                <field name="phone"/>
+                <field name="address"/>
+                <field name="active"/>
+
+                <filter name="is_customer_id_name" string="With Name"
+                        domain="[('name', '=', True)]"/>
+
+
+<!--                <group string="Group By">-->
+<!--                    <filter name="group_by_customer_id_name" string="Name"-->
+<!--                            context="{'group_by': 'customer_id.name'}"/>-->
+<!--                </group>-->
+
+            </search>
+        </field>
+    </record>
+
+    <record
+            model="ir.actions.act_window"
+            id="lawyer_action">
+
+            <field name="name">lawyer</field>
+            <field name="res_model">lawyer</field>
+<!--            <field name="">tree,form</field>-->
+
+    </record>
+
+    <menuitem
+
+            id="lawyer_menu_item"
+            name="Lawyer"
+            parent="lawyer_menu"
+            action="lawyer_action"
+    />
+
+
+</odoo>

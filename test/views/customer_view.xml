@@ -1,0 +1,112 @@
+<odoo>
+    <record model="ir.ui.view"  id="customer_view_tree">
+        <field name="name">customer_tree</field>
+        <field name="model">customer</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+
+            <!-- view co/ntent: <form>, <tree>, <graph>, ... -->
+            <tree multi_edit="1" create="1" edit="1" delete="1">
+
+                <field name="ref"/>
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="activity_ids" widget="list_activity"/>
+                <field name="address"/>
+                <field name="active" />
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view"  id="customer_view_form">
+        <field name="name">customer form </field>
+        <field name="model">customer</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <!-- view content: <form>, <tree>, <graph>, ... -->
+            <form create="1" edit="1" delete="1">
+                <sheet>
+                     <div class="oe_title">
+
+                         <h2>
+                             <label for="ref" class="form-label">ref:</label>
+                             <field name="ref"/>
+
+                         </h2>
+                         <h2>
+                             <label for="name" class="form-label">name:</label>
+                             <field name="name"/>
+
+                         </h2>
+                     </div>
+                    <group>
+
+                        <group string="General info">
+
+                            <field name="name"/>
+                            <field name="phone"/>
+                            <field name="address"/>
+
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view"  id="customer_view_search">
+        <field name="name">customer search</field>
+        <field name="model">customer</field>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+
+            <!-- view content: <form>, <tree>, <graph>, ... -->
+            <search>
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="address"/>
+                <field name="active"/>
+
+                <filter name="is_name" string="With Name"
+                        domain="[('name', '=', True)]"/>
+
+                   <filter name="is_name" string="Without Name"
+                        domain="[('name', '!=', True)]"/>
+
+                <group string="Group By">
+                    <filter name="group_by_name" string="Name"
+                            context="{'group_by': 'name'}"/>
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+    <record
+            model="ir.actions.act_window"
+            id="customer_action">
+
+            <field name="name">customer</field>
+            <field name="res_model">customer</field>
+<!--            <field name="">tree,form</field>-->
+
+    </record>
+
+
+    <menuitem
+
+            id="customer_menu_item"
+            name="Customers"
+            parent="customers_menu"
+            action="customer_action"
+    />
+
+
+</odoo>

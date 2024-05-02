@@ -1,0 +1,30 @@
+<odoo>
+    <menuitem
+            id="الوكالة_root_menu"
+            name="الوكالة"
+    />
+<!--            web_icon="app_one,static/description/icon.png"-->
+    />
+    <menuitem
+            id="customers_menu"
+            name="Customers"
+            parent="الوكالة_root_menu"
+    />
+    <menuitem
+            id="lawyer_menu"
+            name="Lawyer"
+            parent="الوكالة_root_menu"
+    />
+    <menuitem
+            id="mentor_menu"
+            name="mentor"
+            parent="الوكالة_root_menu"
+    />
+<!--  <menuitem-->
+<!--            id="configration_menu"-->
+<!--            name="Configration"-->
+<!--            parent="real_estate_root_menu"-->
+<!--            groups="app_one.property_manager_group" this put in any menu to make manager see it only -->
+<!--    />-->
+
+</odoo>
